@@ -6,7 +6,7 @@ final class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupViews()
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.idMainTableViewCell)
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: idTextView.idMainTableViewCell)
     }
     
     private func setupViews() {
@@ -21,11 +21,13 @@ final class MainTableViewController: UITableViewController {
     
     @objc private func editingTapped() {
         let editingTableViewController = EditingTableViewController()
+        navigationItem.backButtonTitle = "Назад"
         navigationController?.pushViewController(editingTableViewController, animated: true)
     }
 }
 
 // MARK: - UITableViewDataSource
+
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +35,7 @@ extension MainTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.idMainTableViewCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: idTextView.idMainTableViewCell,
                                                        for: indexPath) as? MainTableViewCell else {
             return UITableViewCell()
         }

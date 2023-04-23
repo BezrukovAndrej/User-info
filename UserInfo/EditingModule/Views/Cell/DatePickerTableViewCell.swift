@@ -1,16 +1,15 @@
 import UIKit
 
-final class MainTableViewCell: UITableViewCell {
+final class DatePickerTableViewCell: UITableViewCell {
     
     private let nameLabel = UILabel()
     
-    private let valueLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.text = "Test"
-        label.font = Resources.Fonts.avenirNextRegular(18)
-        label.numberOfLines = 0
-        return label
+    private let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        datePicker.subviews[0].subviews[0].subviews[0].alpha = 0
+        return datePicker
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,7 +28,7 @@ final class MainTableViewCell: UITableViewCell {
         
         nameLabel.font = Resources.Fonts.avenirNextRegular(18)
         addView(nameLabel)
-        addView(valueLabel)
+        contentView.addView(datePicker)
     }
     
     func configure(name: String) {
@@ -39,20 +38,16 @@ final class MainTableViewCell: UITableViewCell {
 
 // MARK: - Set Constraints
 
-extension MainTableViewCell {
+extension DatePickerTableViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.35),
             
-            valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10)
+            datePicker.centerYAnchor.constraint(equalTo: centerYAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         ])
     }
 }

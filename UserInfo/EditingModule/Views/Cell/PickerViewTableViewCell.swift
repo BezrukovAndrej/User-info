@@ -1,18 +1,11 @@
 import UIKit
 
-final class MainTableViewCell: UITableViewCell {
+final class PickerViewTableViewCell: UITableViewCell {
     
     private let nameLabel = UILabel()
-    
-    private let valueLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.text = "Test"
-        label.font = Resources.Fonts.avenirNextRegular(18)
-        label.numberOfLines = 0
-        return label
-    }()
-    
+    private let gengerPickerView = GenderPickerView()
+    private let gendertextField = GenderTextField()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -29,7 +22,11 @@ final class MainTableViewCell: UITableViewCell {
         
         nameLabel.font = Resources.Fonts.avenirNextRegular(18)
         addView(nameLabel)
-        addView(valueLabel)
+        
+        gengerPickerView.genderDelegate = self
+        
+        gendertextField.inputView = gengerPickerView
+        contentView.addView(gendertextField)
     }
     
     func configure(name: String) {
@@ -37,22 +34,28 @@ final class MainTableViewCell: UITableViewCell {
     }
 }
 
+extension PickerViewTableViewCell: GenderPickerViewProtocol {
+    func didSelect(row: Int) {
+        gendertextField.text = Resources.Gender.allCases[row].rawValue
+        gendertextField.resignFirstResponder()
+    }
+}
+
 // MARK: - Set Constraints
 
-extension MainTableViewCell {
+extension PickerViewTableViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.35),
             
-            valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            valueLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10)
+            gendertextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            gendertextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
+            gendertextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -17),
+            gendertextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
     }
 }
+
