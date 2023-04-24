@@ -16,11 +16,11 @@ extension UIViewController {
         
         let alertController = UIAlertController(title: "Данные были изменены",
                                       message: """
-                                              Вы жедаете сохранить изменения, в противном случай
+                                              Вы желаете сохранить изменения, в противном случай
                                               внесенные правки будут отменены
                                               """,
                                       preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Созранить", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
             complitionHandler(true)
         }
         let scipAction = UIAlertAction(title: "Пропустить", style: .default) { _ in

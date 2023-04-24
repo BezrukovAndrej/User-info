@@ -5,7 +5,7 @@ final class TextViewTableViewCell: UITableViewCell {
     weak var nameTextViewDelegate: NameTextViewProtocol?
     
     private let nameLabel = UILabel()
-    private let nameTextView = NameTextView()
+    private var nameTextView = NameTextView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,9 +29,15 @@ final class TextViewTableViewCell: UITableViewCell {
         nameTextView.delegate = self
     }
     
-    func configure(name: String, scrollEnable: Bool) {
+    func configure(name: String, scrollEnable: Bool, value: String) {
         nameLabel.text = name
         nameTextView.isScrollEnabled = scrollEnable
+        nameTextView.text = value == "" ? "Введите данные" : value
+        nameTextView.textColor = value == "" ? .lightGray : .black
+    }
+    
+    public func getCellValue() -> String {
+        nameTextView.text
     }
 }
 

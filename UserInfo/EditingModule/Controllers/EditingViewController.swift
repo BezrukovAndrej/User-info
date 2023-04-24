@@ -32,36 +32,48 @@ final class EditingViewController: UIViewController {
         let backBarButtonItem = UIBarButtonItem.createCustomButton(vc: self,
                                                                    selector: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backBarButtonItem
+        editingTableView.setUserModel(userModel)
         view.addView(editingTableView)
     }
     
     @objc private func backButtonTapped() {
-        presentChangeAlert { value in
-            if value {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.navigationController?.popViewController(animated: true)
+        let editUserModel = editingTableView.getUserModel()
+        if editUserModel == userModel {
+            navigationController?.popViewController(animated: true)
+        } else {
+            presentChangeAlert {[weak self] value in
+                guard let self = self else { return }
+                if value {
+                    guard let firstVC = self.navigationController?.viewControllers.first as? MainTableViewController else {
+                        return
+                    }
+                    firstVC.changeUserModel(model: editUserModel)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
     
     @objc private func saveTapped() {
-        if authField() {
+        let editUserModel = editingTableView.getUserModel()
+        if authField(model: editUserModel) {
             presentSimpleAlert(title: "Выполнено", message: "Все поля заполнены")
         } else {
-            presentSimpleAlert(title: "Ошибка", message: "Заполните все поля! ")
+            presentSimpleAlert(title: "Ошибка", message: "Заполните все поля!")
         }
     }
     
-    private func authField() -> Bool {
-        if userModel.firstName != "" ||
-            userModel.secondName != "" ||
-            userModel.dateBirthday != "" ||
-            userModel.gender == "" ||
-            userModel.gender != "Не указано" {
-            return true
+    private func authField(model: UserModel) -> Bool {
+        if model.firstName == "Введите данные" ||
+            model.secondName == "Введите данные" ||
+            model.dateBirthday == "" ||
+            model.gender == "" ||
+            model.gender == "Не указано" {
+            return false
         }
-        return false
+        return true
     }
 }
 

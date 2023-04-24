@@ -9,7 +9,7 @@ final class MainTableViewController: UITableViewController {
         
         setupViews()
         getUserModel()
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: idTextView.idMainTableViewCell)
+        tableView.register(MainTableViewCell.self)
     }
     
     private func setupViews() {
@@ -30,6 +30,20 @@ final class MainTableViewController: UITableViewController {
     private func getUserModel() {
         userModel = UserDefaultsHelpers.getUserModel()
     }
+    
+    private func saveEditModel(_ model: UserModel) {
+        UserDefaultsHelpers.saveUserValue(Resources.NameFields.firstName.rawValue, model.firstName)
+        UserDefaultsHelpers.saveUserValue(Resources.NameFields.secondName.rawValue, model.secondName)
+        UserDefaultsHelpers.saveUserValue(Resources.NameFields.thirdName.rawValue, model.thirdName)
+        UserDefaultsHelpers.saveUserValue(Resources.NameFields.dateBirthday.rawValue, model.dateBirthday)
+        UserDefaultsHelpers.saveUserValue(Resources.NameFields.gender.rawValue, model.gender)
+    }
+    
+    public func changeUserModel(model: UserModel) {
+        saveEditModel(model)
+        userModel = model
+        tableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -41,12 +55,12 @@ extension MainTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idTextView.idMainTableViewCell,
-                                                       for: indexPath) as? MainTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(MainTableViewCell.self) else {
             return UITableViewCell()
         }
         let nameField = Resources.NameFields.allCases[indexPath.row].rawValue
-        cell.configure(name: nameField)
+        let value = UserDefaultsHelpers.getUserValue(Resources.NameFields.allCases[indexPath.row].rawValue)
+        cell.configure(name: nameField, value: value)
         return cell
     }
 }

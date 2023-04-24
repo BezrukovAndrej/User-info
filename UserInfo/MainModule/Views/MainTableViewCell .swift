@@ -32,8 +32,9 @@ final class MainTableViewCell: UITableViewCell {
         addView(valueLabel)
     }
     
-    func configure(name: String) {
+    func configure(name: String, value: String) {
         nameLabel.text = name
+        valueLabel.text = value == "" ? "Нет данных" : value 
     }
 }
 
