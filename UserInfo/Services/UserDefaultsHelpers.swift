@@ -27,8 +27,7 @@ final class UserDefaultsHelpers {
     }
     
     static func getUserValue(_ key: String) -> String {
-        
-        var userDictionary = getUserDictionary()
+        let userDictionary = getUserDictionary()
         let stringValue = userDictionary[key] ?? ""
         return stringValue
     }

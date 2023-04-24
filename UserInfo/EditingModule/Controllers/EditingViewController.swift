@@ -28,12 +28,40 @@ final class EditingViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить",
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(editingTapped))
+                                                            action: #selector(saveTapped))
+        let backBarButtonItem = UIBarButtonItem.createCustomButton(vc: self,
+                                                                   selector: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backBarButtonItem
         view.addView(editingTableView)
     }
     
-    @objc private func editingTapped() {
-        print("tap")
+    @objc private func backButtonTapped() {
+        presentChangeAlert { value in
+            if value {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    @objc private func saveTapped() {
+        if authField() {
+            presentSimpleAlert(title: "Выполнено", message: "Все поля заполнены")
+        } else {
+            presentSimpleAlert(title: "Ошибка", message: "Заполните все поля! ")
+        }
+    }
+    
+    private func authField() -> Bool {
+        if userModel.firstName != "" ||
+            userModel.secondName != "" ||
+            userModel.dateBirthday != "" ||
+            userModel.gender == "" ||
+            userModel.gender != "Не указано" {
+            return true
+        }
+        return false
     }
 }
 

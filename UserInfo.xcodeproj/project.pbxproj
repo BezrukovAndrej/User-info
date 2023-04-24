@@ -27,6 +27,8 @@
 		9139EBD429F5A66B0088F8EE /* EditingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBD329F5A66B0088F8EE /* EditingTableView.swift */; };
 		9139EBD729F5AA640088F8EE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBD629F5AA640088F8EE /* UserModel.swift */; };
 		9139EBDA29F5AE030088F8EE /* UserDefaultsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBD929F5AE030088F8EE /* UserDefaultsHelpers.swift */; };
+		9139EBDC29F66C330088F8EE /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBDB29F66C330088F8EE /* UIViewController + Extension.swift */; };
+		9139EBDE29F66E520088F8EE /* UIBarButtonItem + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBDD29F66E520088F8EE /* UIBarButtonItem + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		9139EBD329F5A66B0088F8EE /* EditingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTableView.swift; sourceTree = "<group>"; };
 		9139EBD629F5AA640088F8EE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9139EBD929F5AE030088F8EE /* UserDefaultsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelpers.swift; sourceTree = "<group>"; };
+		9139EBDB29F66C330088F8EE /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		9139EBDD29F66E520088F8EE /* UIBarButtonItem + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				912CB6B929F51C10009977E0 /* UIView + Extension.swift */,
+				9139EBDB29F66C330088F8EE /* UIViewController + Extension.swift */,
+				9139EBDD29F66E520088F8EE /* UIBarButtonItem + Extension.swift */,
 			);
 			path = UIkit;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 				912CB6D329F55457009977E0 /* GenderTextField .swift in Sources */,
 				912CB6B329F51594009977E0 /* Resources.swift in Sources */,
 				912CB6D129F55370009977E0 /* GenderPickerViewProtocol.swift in Sources */,
+				9139EBDE29F66E520088F8EE /* UIBarButtonItem + Extension.swift in Sources */,
 				912CB6C929F541BE009977E0 /* NameTextViewProtocol.swift in Sources */,
 				912CB6CB29F54582009977E0 /* DatePickerTableViewCell.swift in Sources */,
 				912CB6BE29F52139009977E0 /* EditingViewController.swift in Sources */,
@@ -306,6 +313,7 @@
 				912CB69A29F4314D009977E0 /* AppDelegate.swift in Sources */,
 				912CB6CF29F5520E009977E0 /* GenderPickerView.swift in Sources */,
 				912CB6C329F5314E009977E0 /* TextViewTableViewCell.swift in Sources */,
+				9139EBDC29F66C330088F8EE /* UIViewController + Extension.swift in Sources */,
 				912CB6C529F532F3009977E0 /* NameTextView.swift in Sources */,
 				912CB6B629F51984009977E0 /* MainTableViewCell .swift in Sources */,
 				912CB6C729F53806009977E0 /* Constants.swift in Sources */,

@@ -15,7 +15,7 @@ final class MainTableViewController: UITableViewController {
     private func setupViews() {
         title = "Просмотр"
         view.backgroundColor = .white
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Редактировать",
                                                             style: .plain,
                                                             target: self,
@@ -24,7 +24,6 @@ final class MainTableViewController: UITableViewController {
     
     @objc private func editingTapped() {
         let editingViewController = EditingViewController(userModel)
-        navigationItem.backButtonTitle = "Назад"
         navigationController?.pushViewController(editingViewController, animated: true)
     }
     
