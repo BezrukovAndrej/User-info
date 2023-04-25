@@ -13,7 +13,7 @@
 ### Functional:
 - adding photos from the library.
 - installation of full name, date of birth, gender.
-- the appearance of an alert in case of not filling all the fields (except for reporting).
+- the appearance of an alert in case of not filling all the fields (except for third name).
 - the appearance of an alert in case of data changes with the offer "Save" or "Skip".
 
 ## **Использовалось**
