@@ -8,7 +8,7 @@
 - No storyboard, 100% Programmatic UI
 
 ## User-info
-Calculator
+User information
 
 ## **Used**
 - No storyboard, 100% Programmatic UI
