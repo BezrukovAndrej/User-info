@@ -2,9 +2,21 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    private let userPhotoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .gray
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private let mainTableView = MainTableView()
     private var userModel = UserModel()
 
+    override func viewWillLayoutSubviews() {
+        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,15 +36,18 @@ final class MainViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(editingTapped))
         view.addView(mainTableView)
+        view.addView(userPhotoImageView)
     }
     
     @objc private func editingTapped() {
-        let editingViewController = EditingViewController(userModel)
+        let editingViewController = EditingViewController(userModel, userPhoto: userPhotoImageView.image)
         navigationController?.pushViewController(editingViewController, animated: true)
     }
     
     private func getUserModel() {
         userModel = UserDefaultsHelpers.getUserModel()
+        let userPhoto = UserDefaultsHelpers.loadUserImage()
+        userPhotoImageView.image = userPhoto
     }
     
     private func saveEditModel(_ model: UserModel) {
@@ -61,7 +76,14 @@ final class MainViewController: UIViewController {
     public func changeUserModel(model: UserModel) {
         saveEditModel(model)
         userModel = model
+        setValueArray()
         mainTableView.reloadData()
+    }
+    
+    public func changeUserPhoto(image: UIImage?) {
+        userPhotoImageView.image = image
+        guard let userPhoto = image else { return }
+        UserDefaultsHelpers.saveUserImage(image: userPhoto)
     }
 }
 
@@ -71,7 +93,12 @@ extension MainViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            userPhotoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            userPhotoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
+            userPhotoImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            mainTableView.topAnchor.constraint(equalTo: userPhotoImageView.bottomAnchor, constant: 10),
             mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
