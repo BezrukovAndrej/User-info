@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		912CB69A29F4314D009977E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912CB69929F4314D009977E0 /* AppDelegate.swift */; };
-		912CB69E29F4314D009977E0 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912CB69D29F4314D009977E0 /* MainTableViewController.swift */; };
+		912CB69E29F4314D009977E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912CB69D29F4314D009977E0 /* MainViewController.swift */; };
 		912CB6A329F43152009977E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 912CB6A229F43152009977E0 /* Assets.xcassets */; };
 		912CB6A629F43152009977E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 912CB6A429F43152009977E0 /* LaunchScreen.storyboard */; };
 		912CB6B329F51594009977E0 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912CB6B229F51594009977E0 /* Resources.swift */; };
@@ -31,12 +31,13 @@
 		9139EBE029F6847D0088F8EE /* UITableView + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBDF29F6847D0088F8EE /* UITableView + Extension .swift */; };
 		9139EBE229F68D1D0088F8EE /* String + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBE129F68D1D0088F8EE /* String + Extension .swift */; };
 		9139EBE429F68DBE0088F8EE /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBE329F68DBE0088F8EE /* Date + Extension.swift */; };
+		9139EBE629F7F0240088F8EE /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EBE529F7F0240088F8EE /* MainTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		912CB69629F4314D009977E0 /* UserInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		912CB69929F4314D009977E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		912CB69D29F4314D009977E0 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		912CB69D29F4314D009977E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		912CB6A229F43152009977E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		912CB6A529F43152009977E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		912CB6A729F43152009977E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		9139EBDF29F6847D0088F8EE /* UITableView + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension .swift"; sourceTree = "<group>"; };
 		9139EBE129F68D1D0088F8EE /* String + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension .swift"; sourceTree = "<group>"; };
 		9139EBE329F68DBE0088F8EE /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
+		9139EBE529F7F0240088F8EE /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,7 @@
 		912CB6B029F43290009977E0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				912CB69D29F4314D009977E0 /* MainTableViewController.swift */,
+				912CB69D29F4314D009977E0 /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				912CB6B529F51984009977E0 /* MainTableViewCell .swift */,
+				9139EBE529F7F0240088F8EE /* MainTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				9139EBE029F6847D0088F8EE /* UITableView + Extension .swift in Sources */,
 				912CB6BA29F51C10009977E0 /* UIView + Extension.swift in Sources */,
 				912CB6D329F55457009977E0 /* GenderTextField .swift in Sources */,
+				9139EBE629F7F0240088F8EE /* MainTableView.swift in Sources */,
 				912CB6B329F51594009977E0 /* Resources.swift in Sources */,
 				912CB6D129F55370009977E0 /* GenderPickerViewProtocol.swift in Sources */,
 				9139EBDE29F66E520088F8EE /* UIBarButtonItem + Extension.swift in Sources */,
@@ -318,7 +322,7 @@
 				912CB6BE29F52139009977E0 /* EditingViewController.swift in Sources */,
 				9139EBD729F5AA640088F8EE /* UserModel.swift in Sources */,
 				9139EBD429F5A66B0088F8EE /* EditingTableView.swift in Sources */,
-				912CB69E29F4314D009977E0 /* MainTableViewController.swift in Sources */,
+				912CB69E29F4314D009977E0 /* MainViewController.swift in Sources */,
 				912CB69A29F4314D009977E0 /* AppDelegate.swift in Sources */,
 				912CB6CF29F5520E009977E0 /* GenderPickerView.swift in Sources */,
 				912CB6C329F5314E009977E0 /* TextViewTableViewCell.swift in Sources */,

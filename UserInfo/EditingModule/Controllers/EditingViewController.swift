@@ -44,7 +44,7 @@ final class EditingViewController: UIViewController {
             presentChangeAlert {[weak self] value in
                 guard let self = self else { return }
                 if value {
-                    guard let firstVC = self.navigationController?.viewControllers.first as? MainTableViewController else {
+                    guard let firstVC = self.navigationController?.viewControllers.first as? MainViewController else {
                         return
                     }
                     firstVC.changeUserModel(model: editUserModel)

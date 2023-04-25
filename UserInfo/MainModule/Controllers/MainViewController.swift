@@ -1,7 +1,8 @@
 import UIKit
 
-final class MainTableViewController: UITableViewController {
+final class MainViewController: UIViewController {
     
+    private let mainTableView = MainTableView()
     private var userModel = UserModel()
 
     override func viewDidLoad() {
@@ -9,7 +10,9 @@ final class MainTableViewController: UITableViewController {
         
         setupViews()
         getUserModel()
-        tableView.register(MainTableViewCell.self)
+        setConstraints()
+        setValueArray()
+        
     }
     
     private func setupViews() {
@@ -20,6 +23,7 @@ final class MainTableViewController: UITableViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(editingTapped))
+        view.addView(mainTableView)
     }
     
     @objc private func editingTapped() {
@@ -39,37 +43,38 @@ final class MainTableViewController: UITableViewController {
         UserDefaultsHelpers.saveUserValue(Resources.NameFields.gender.rawValue, model.gender)
     }
     
+    private func getValueArray() -> [String] {
+        var valueArray = [String]()
+        for key in Resources.NameFields.allCases {
+            let value = UserDefaultsHelpers.getUserValue(key.rawValue)
+            valueArray.append(value)
+        }
+        return valueArray
+    }
+    
+    private func setValueArray() {
+        let valueArray = getValueArray()
+        mainTableView.setValueArray(valueArray)
+        mainTableView.reloadData()
+    }
+    
     public func changeUserModel(model: UserModel) {
         saveEditModel(model)
         userModel = model
-        tableView.reloadData()
+        mainTableView.reloadData()
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - Set Constraints
 
-extension MainTableViewController {
+extension MainViewController {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Resources.NameFields.allCases.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(MainTableViewCell.self) else {
-            return UITableViewCell()
-        }
-        let nameField = Resources.NameFields.allCases[indexPath.row].rawValue
-        let value = UserDefaultsHelpers.getUserValue(Resources.NameFields.allCases[indexPath.row].rawValue)
-        cell.configure(name: nameField, value: value)
-        return cell
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension MainTableViewController {
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.row == 1 ? UITableView.automaticDimension : 44 
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
     }
 }
